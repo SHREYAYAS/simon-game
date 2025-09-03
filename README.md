@@ -36,4 +36,4 @@ Open the index.html file in your favorite web browser.
 Click the "Start" button and repeat the sequence of lights and sounds!
 
 Screenshot
-![A screenshot of the Simon game in action.](simon-game-preview.png)
+![A screenshot of the Simon game in action.](simon-game-preview.png.png)
