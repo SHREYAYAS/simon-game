@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Game - Attractive</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/15.0.4/Tone.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <div class="title-container">
+            <h1>Simon</h1>
+            <div class="level-display">Level: <span id="level-display-span">0</span></div>
+        </div>
+        <p id="message-display"></p>
+
+        <div class="simon-wheel">
+            <div class="center-hub">
+                <button id="start-button">Start</button>
+            </div>
+            <div id="green" data-color="green" class="simon-pad"></div>
+            <div id="red" data-color="red" class="simon-pad"></div>
+            <div id="yellow" data-color="yellow" class="simon-pad"></div>
+            <div id="blue" data-color="blue" class="simon-pad"></div>
+        </div>
+    </div>
+    
+    <div id="game-over-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Game Over</h2>
+            <p>You reached level <span id="final-level">0</span>.</p>
+            <button id="restart-button">Play Again</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

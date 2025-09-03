@@ -1,0 +1,200 @@
+
+/* --- Base Styles & Variables --- */
+:root {
+    --bg-color: #2c3e50;
+    --wheel-bg: #34495e;
+    --text-color: #ecf0f1;
+    --shadow-dark: rgba(0, 0, 0, 0.3);
+    --shadow-light: rgba(255, 255, 255, 0.1);
+    
+    /* Pad Colors */
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --yellow: #f1c40f;
+    --blue: #3498db;
+
+    /* Glow/Highlight Colors */
+    --green-glow: #58d68d;
+    --red-glow: #ed7669;
+    --yellow-glow: #f5d354;
+    --blue-glow: #6bb2de;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(135deg, #2c3e50, #212f3d);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+    touch-action: manipulation;
+}
+
+/* --- Main Game Layout --- */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.title-container h1 {
+    font-size: 3.5rem;
+    margin: 0;
+    text-shadow: 3px 3px 0px var(--shadow-dark);
+}
+
+.level-display {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+#message-display {
+    height: 1.5rem; /* Reserve space */
+    font-size: 1rem;
+    color: var(--yellow);
+    text-shadow: 2px 2px 0px var(--shadow-dark);
+}
+
+/* --- The Simon Wheel --- */
+.simon-wheel {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    max-width: 90vw;
+    max-height: 90vw;
+    background: var(--wheel-bg);
+    border-radius: 50%;
+    box-shadow: 
+        inset 0 0 50px var(--shadow-dark),
+        0 0 20px var(--shadow-dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.simon-pad {
+    cursor: pointer;
+    background-color: var(--color);
+    box-shadow: 
+        inset 5px 5px 10px var(--shadow-dark),
+        inset -5px -5px 10px var(--shadow-light);
+    transition: all 0.1s ease-in-out;
+}
+
+.simon-pad:hover {
+    filter: brightness(1.1);
+}
+
+/* --- Lit/Active State --- */
+.simon-pad.lit {
+    filter: brightness(1.5);
+    transform: scale(1.03);
+    box-shadow: 
+        inset 3px 3px 8px var(--shadow-dark),
+        inset -3px -3px 8px var(--shadow-light),
+        0 0 30px var(--glow-color);
+}
+
+/* --- Pad Colors & Shapes --- */
+#green { --color: var(--green); --glow-color: var(--green-glow); border-top-left-radius: 100%; }
+#red { --color: var(--red); --glow-color: var(--red-glow); border-top-right-radius: 100%; }
+#yellow { --color: var(--yellow); --glow-color: var(--yellow-glow); border-bottom-left-radius: 100%; }
+#blue { --color: var(--blue); --glow-color: var(--blue-glow); border-bottom-right-radius: 100%; }
+
+
+/* --- Central Hub & Start Button --- */
+.center-hub {
+    position: absolute;
+    width: 45%;
+    height: 45%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(145deg, #3a506b, #2a3c50);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 25px var(--shadow-dark);
+    border: 10px solid var(--bg-color);
+}
+
+#start-button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    background: var(--wheel-bg);
+    border: none;
+    padding: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+}
+
+#start-button:hover {
+    background: var(--bg-color);
+}
+
+#start-button.hidden {
+    display: none;
+}
+
+/* --- Game Over Modal --- */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-overlay.visible {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--wheel-bg);
+    padding: 2rem 3rem;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    border: 3px solid var(--bg-color);
+}
+
+.modal-content h2 {
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+}
+
+#restart-button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+#restart-button:hover {
+    background-color: var(--blue-glow);
+}
